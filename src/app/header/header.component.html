@@ -1,31 +1,31 @@
-<c-header>
-  <c-container fluid>
-    <c-header-brand [routerLink]>Brand</c-header-brand>
-    <c-header-nav class="ms-auto">
-      <c-nav-item>
-        <a [active]="true" [routerLink] cNavLink>Home</a>
-      </c-nav-item>
-      <c-nav-item>
-        <a cNavLink routerLink="/components/alert">Link</a>
-      </c-nav-item>
-      <c-nav-item>
-        <a cNavLink disabled routerLink="/components/alert">Disabled</a>
-      </c-nav-item>
-      <c-dropdown alignment="end">
-        <a cDropdownToggle cNavLink>Dropdown</a>
-        <ul cDropdownMenu>
-          <li><a [routerLink]="[]" cDropdownItem>Action</a></li>
-          <li><a [routerLink]="[]" cDropdownItem>Another action</a></li>
-          <li>
-            <hr cDropdownDivider>
-          </li>
-          <li><a [routerLink]="[]" cDropdownItem>Something else</a></li>
-        </ul>
-      </c-dropdown>
-    </c-header-nav>
-  </c-container>
-  <c-header-divider />
-  <c-container fluid>
-    <c-header-text>Additional text</c-header-text>
-  </c-container>
-</c-header>
+<header class="header-container">
+  <div class="top-bar">
+    <div class="social">
+      <a href="https://www.fb.com" target="_blank"><img class="facebook" src="https://cdn-icons-png.flaticon.com/128/747/747374.png" alt=""></a>
+    <a href="https://www.instagram.com" target="_blank"><img class="instagram" src="https://cdn-icons-png.flaticon.com/128/11402/11402105.png" alt=""></a>
+    </div>
+    <div>
+      <button>Login</button>
+      <button>Registro</button>
+    </div>
+  </div>
+  <hr>
+  <div class="main-header">
+    <div> <img class="logo" src="https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/cnD2YyVjzZRs8ZBa0Tb7ijvBeKX2/0be3ba63-1c3d-4a35-b9c4-3b5ed1785a5a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20250518%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250518T004232Z&X-Amz-Expires=43200&X-Amz-Signature=d39c88bc2d82dfa6b54ba97586bcd6f36eccfe50b5f0b8ae7f6a247e9fa83843&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22icono%20web.png%22" alt=""></div>
+    <div class="search-container">
+      <input type="text" placeholder="Buscar..." />
+      <button class="search-button"></button>
+    </div>
+    <div class="icons">
+      <button><img src="https://cdn-icons-png.flaticon.com/128/535/535285.png" alt=""></button>
+      <button><img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt=""></button>
+    </div>
+  </div>
+  
+  <nav class="navbar">
+    <button class="nav-button">Inicio</button>
+    <button class="nav-button">Sacar Turno</button>
+    <button class="nav-button">Nosotros</button>
+    <button class="nav-button">Productos</button>
+  </nav>
+</header>
