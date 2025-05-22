@@ -1,0 +1,53 @@
+.footer-container {
+  font-family: Arial, sans-serif;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  background-color: #09aeb8; 
+  color: white;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-left h2 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.footer-right {
+  text-align: right;
+  max-width: 50%;
+}
+
+.footer-right h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.footer-right p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  background-color: #1a1a1a; 
+  color: white;
+  text-align: center;
+  padding: 10px 5px;
+  font-size: 12px;
+}
+
+.footer-bottom a {
+  color: white;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
