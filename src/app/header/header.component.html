@@ -1,31 +1,39 @@
 <header class="header-container">
+
   <div class="top-bar">
-    <div class="social">
-      <a href="https://www.fb.com" target="_blank"><img class="facebook" src="https://cdn-icons-png.flaticon.com/128/747/747374.png" alt=""></a>
-    <a href="https://www.instagram.com" target="_blank"><img class="instagram" src="https://cdn-icons-png.flaticon.com/128/11402/11402105.png" alt=""></a>
+    <div class="mobile-auth">
+    <button>Login</button>
+    <button>Registro</button>
     </div>
-    <div>
+  </div>
+
+  <nav class="navbar">
+    <div class="left-section">
+      <img class="logo" src="https://1drv.ms/i/c/dd6c1b8b96b36005/IQSRgGdJYuK4Sq_eMRsroHKjAYzMYdlZe440Elz6sDeTt-s?width=1024" alt="">
+
+      <button class="nav-button">Sacar Turno</button>
+
+      <!-- Botones ocultos en mobile -->
+      <div class="nav-links">
+        <button class="nav-button">Contacto</button>
+        <button class="nav-button">Nosotros</button>
+      </div>
+
+      <!-- Menú hamburguesa -->
+      <button class="hamburger" (click)="toggleMenu()">
+        ☰
+      </button>
+    </div>
+
+    <div class="right-section login">
       <button>Login</button>
       <button>Registro</button>
     </div>
-  </div>
-  <hr>
-  <div class="main-header">
-    <div> <img class="logo" src="https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/cnD2YyVjzZRs8ZBa0Tb7ijvBeKX2/0be3ba63-1c3d-4a35-b9c4-3b5ed1785a5a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20250518%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250518T004232Z&X-Amz-Expires=43200&X-Amz-Signature=d39c88bc2d82dfa6b54ba97586bcd6f36eccfe50b5f0b8ae7f6a247e9fa83843&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22icono%20web.png%22" alt=""></div>
-    <div class="search-container">
-      <input type="text" placeholder="Buscar..." />
-      <button class="search-button"></button>
-    </div>
-    <div class="icons">
-      <button><img src="https://cdn-icons-png.flaticon.com/128/535/535285.png" alt=""></button>
-      <button><img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt=""></button>
-    </div>
-  </div>
-  
-  <nav class="navbar">
-    <button class="nav-button">Inicio</button>
-    <button class="nav-button">Sacar Turno</button>
-    <button class="nav-button">Nosotros</button>
-    <button class="nav-button">Productos</button>
   </nav>
+
+  <!-- Menú desplegable para móviles -->
+  <div class="mobile-menu" [class.open]="menuOpen">
+    <button class="nav-button">Contacto</button>
+    <button class="nav-button">Nosotros</button>
+  </div>
 </header>
