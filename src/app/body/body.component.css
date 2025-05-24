@@ -1,0 +1,245 @@
+.contenedor-centro {
+  position: relative; /* para posicionar el botón absolutamente aquí */
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;;
+  align-items: center; /* alinear arriba */
+  flex-direction: column;  /* para que se apilen imagen y botón verticalmente */
+}
+
+.contenido_central{
+  position: relative;
+  width: 37vw; /* igual que el max-width de la imagen */
+  max-width: 400px; /* o lo que quieras */
+  margin: 0 auto;
+  display: flex;          /* Cambiado para centrar la imagen */
+  justify-content: center; /* Centra horizontalmente el contenido */
+}
+
+.perro {
+  max-width: 50vw;
+  display: block;
+  margin: 0 auto; /* centra la imagen */
+  
+}
+
+.boton-telegram {
+  position: absolute;
+  top: 60%; /* ajusta para que el botón quede flotando sobre la imagen */
+  left: 50%;
+  transform: translate(-50%, -50%)scale(1);
+  transition: transform 0.3s ease;
+  
+  background-color: #09aeb8; /* Azul */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+  z-index: 10; /* para asegurar que esté sobre la imagen */
+  letter-spacing: 2px; /* aumenta espacio entre letras */
+  font-stretch: expanded;
+}
+
+@media (max-width: 600px) {
+  .boton-telegram {
+    font-size: 3vw; /* Ajusta el texto del botón en pantallas pequeñas */
+    padding: 0.6em 1em;
+  }
+}
+
+.boton-telegram:hover {
+  background-color: #ffd763; /* Amarillo */
+  color: #09aeb8;
+
+  transform: translate(-50%, -50%) scale(1.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.boton-telegram:active {
+  transform: translate(-50%, -50%) scale(1.1);
+  transition: transform 0.1s ease;
+}
+
+.burbujas{
+  float: left;
+  width: 250px; /* Ajustá el tamaño que quieras */
+  margin: 15px;
+  opacity: 0.5; /* 0 = totalmente transparente, 1 = opaca */
+}
+
+.huellas{
+  float: right;
+  width: 250px; /* Ajustá el tamaño que quieras */
+  margin: 15px;
+  opacity: 0.5; /* 0 = totalmente transparente, 1 = opaca */
+}
+
+
+.servicios {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.servicios_tarjetas {
+  width: 280px;
+  padding: 20px;
+  background: var(--blanco);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease; /* Animación suave */
+
+}
+
+.servicios_tarjetas img {
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.servicios_tarjetas:hover {
+  transform: scale(1.1);
+  z-index: 10; /* Para que se superponga */
+}
+
+
+/*perro que se mueve*/
+.perro_animado {
+  position: fixed;
+  top: 86%;
+  right: 2%;
+  width: 400px;
+  height: 400px;
+  transform-origin: bottom right;
+  z-index: 500;
+  transform: translateY(-50%) scale(1);
+  transition: transform 0.3s ease;
+}
+
+/* Escala el contenedor en pantallas más chicas */
+@media (max-width: 900px) {
+  .perro_animado {
+    transform: translateY(-50%) scale(0.7);
+  }
+}
+
+@media (max-width: 600px) {
+  .perro_animado {
+    transform: translateY(-50%) scale(0.5);
+  }
+}
+
+
+.dog{
+  background-color: #fdb44e;
+  height: 75px;
+  width: 120px;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  border-radius: 0 0 0 120px;
+}
+
+.body{
+  background-color: #fdb44e;
+  height: 100px;
+  width: 180px;
+  position: relative;
+  top: 55%;
+  left: 70%;
+  border-radius: 0 0 0 60px;
+}
+
+.leg1, .leg2, .leg3, .leg4{
+  background-color: #fdb44e;
+  height: 50px;
+  width: 18px;
+  position: relative;
+}
+
+.leg1{
+  left: 100px;
+  top: 22px;
+}
+
+.leg2{
+  left: 130px;
+  bottom: 28px;
+}
+
+.leg3{
+  left: 205px;
+  bottom: 78px;
+  background-color: rgba(151, 89, 2, 0.5);
+  z-index: -1;
+}
+
+.leg4{
+  left: 232px;
+  bottom: 128px;
+}
+
+.tail{
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 100px solid #fdb44e;
+  position: relative;
+  bottom: 340px;
+  left: 242px;
+  transform: rotate(30deg);
+  transform-origin: bottom;
+  animation: wag 0.6s infinite ease-in-out;
+}
+
+@keyframes wag {
+  0% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+
+.ear{
+  background-color: rgba(151, 89, 2, 0.8);
+  width: 45px;
+  height: 90px;
+  border-radius: 0 0 100px 100px;
+  position: relative;
+  left: 75px;
+  bottom: 400px;
+}
+
+.nose{
+  background-color: black;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  position: relative;
+  right: 2.5px;
+  bottom: 492px;
+}
+
+.eye{
+  background-color: black;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  position: relative;
+  bottom: 490px;
+  left: 50px;
+}
