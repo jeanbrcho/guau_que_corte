@@ -1,10 +1,10 @@
 .contenedor-centro {
-  position: relative; /* para posicionar el botón absolutamente aquí */
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  justify-content: flex-start;;
-  align-items: center; /* alinear arriba */
-  flex-direction: column;  /* para que se apilen imagen y botón verticalmente */
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 .contenido_central{
@@ -125,19 +125,19 @@
   transition: transform 0.3s ease;
 }
 
-/* Escala el contenedor en pantallas más chicas */
 @media (max-width: 900px) {
   .perro_animado {
+    top: 85%;
     transform: translateY(-50%) scale(0.7);
   }
 }
 
 @media (max-width: 600px) {
   .perro_animado {
+    top: 80%;
     transform: translateY(-50%) scale(0.5);
   }
 }
-
 
 .dog{
   background-color: #fdb44e;
