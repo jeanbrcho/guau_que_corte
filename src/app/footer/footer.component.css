@@ -1,9 +1,11 @@
 .footer-container {
   font-family: Arial, sans-serif;
+   flex-shrink: 0;
+  width: 100%;
 }
 
 .footer-main {
-   display: flex;
+  display: flex;
   
   align-items: center; 
   flex-wrap: wrap;
