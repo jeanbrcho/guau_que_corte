@@ -12,3 +12,4 @@ export class BodyComponent {
     window.open('https://web.telegram.org/k/#-4775274431', '_blank');
   }
 }
+
