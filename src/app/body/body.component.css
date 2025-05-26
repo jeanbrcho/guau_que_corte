@@ -134,8 +134,9 @@
 
 @media (max-width: 600px) {
   .perro_animado {
-    top: 80%;
-    transform: translateY(-50%) scale(0.5);
+    display:none;
+   /* top: 80%;
+    transform: translateY(-50%) scale(0.5); */ 
   }
 }
 

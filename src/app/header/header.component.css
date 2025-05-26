@@ -21,6 +21,7 @@
   background-color: #09aeb8;
 }
 
+/* estilo previo 
 button {
   background-color: #007bff;
   color: #fff;
@@ -33,6 +34,10 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+*/ 
+
+
 .logo {
   width: 5.5em;
   height: 5em;
@@ -49,6 +54,7 @@ button:hover {
   background-color: transparent;
   color: #fff;
   font-weight: bold;
+  font-size: large;
   border: none;
   padding: 15px 20px;
   cursor: pointer;
@@ -99,10 +105,11 @@ button:hover {
   border-radius: 5px;
 }
 
-/* Botones de Login/Registro */
+/* Botones de Login/Registro 
 .login button {
-  background-color: #007bff;
-  color: #fff;
+  /*background-color: #007bff;  
+  background-color: #ffffff;
+  color: #000000;
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -112,7 +119,7 @@ button:hover {
 
 .login button:hover {
   background-color: #0056b3;
-}
+} */
 
 /* ...estilos previos... */
 
@@ -140,6 +147,31 @@ button:hover {
   display: none;
   gap: 10px;
 }
+
+
+/* estilo nuevo botones*/ 
+.btn {
+  background-color: white;
+  color: #09aeb8;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 10px;
+}
+
+.btn:hover {
+   background-color: #ffd763;
+  color: #066b72;
+  border-color: #066b72;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
