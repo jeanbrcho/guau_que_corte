@@ -1,0 +1,11 @@
+.nosotros-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
