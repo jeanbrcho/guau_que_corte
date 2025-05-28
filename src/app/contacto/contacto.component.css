@@ -1,0 +1,41 @@
+.contacto-container {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px 35px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+  border: 2px solid #09aeb8; /* borde azulado para destacar */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(9, 174, 184, 0.25); /* sombra con azul */
+  color: #222;
+  transition: box-shadow 0.3s ease;
+}
+
+.contacto-container:hover {
+  box-shadow: 0 12px 30px rgba(255, 215, 99, 0.35); /* sombra amarilla al pasar mouse */
+}
+
+h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #09aeb8; /* título azulado */
+  border-bottom: 4px solid #ffd763; /* línea amarilla debajo */
+  padding-bottom: 10px;
+  max-width: max-content;
+}
+
+p {
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.map-container {
+  margin-top: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(9, 174, 184, 0.25);
+  border: 2px solid #ffd763; /* borde amarillo */
+}

@@ -15,8 +15,9 @@
 
       <!-- Botones ocultos en mobile -->
       <div class="nav-links">
-        <button class="nav-button">Contacto</button>
-        <button class="nav-button">Nosotros</button>
+        <button class="nav-button" routerLink="/">Inicio</button>
+        <button class="nav-button" routerLink="/contacto">Contacto</button>
+        <button class="nav-button" routerLink="/nosotros">Nosotros</button>
       </div>
 
       <!-- Menú hamburguesa -->
@@ -29,13 +30,14 @@
     <!--  <button>Login</button>
       <button>Registro</button>  -->
       <button class="btn">Iniciar Sesión</button>
-       <button class="btn">Registrarse</button>
+      <button class="btn">Registrarse</button>
     </div>
   </nav>
 
   <!-- Menú desplegable para móviles -->
   <div class="mobile-menu" [class.open]="menuOpen">
-    <button class="nav-button">Contacto</button>
-    <button class="nav-button">Nosotros</button>
+    <button class="nav-button" routerLink="/" (click)="toggleMenu()">Inicio</button>
+    <button class="nav-button" routerLink="/contacto" (click)="toggleMenu()">Contacto</button>
+    <button class="nav-button" routerLink="/nosotros" (click)="toggleMenu()">Nosotros</button>
   </div>
 </header>
