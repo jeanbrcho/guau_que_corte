@@ -2,7 +2,6 @@
   max-width: 700px;
   margin: 60px auto;
   padding: 40px 35px;
-  font-family: 'Roboto', sans-serif;
   background-color: #ffffff;
   border: 2px solid #09aeb8; /* borde azulado para destacar */
   border-radius: 12px;
@@ -23,6 +22,7 @@ h2 {
   border-bottom: 4px solid #ffd763; /* línea amarilla debajo */
   padding-bottom: 10px;
   max-width: max-content;
+  font-weight: 800;
 }
 
 p {
