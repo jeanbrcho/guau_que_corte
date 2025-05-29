@@ -86,7 +86,19 @@
   background-color: #ffd763;
   color: #fff;
   border-radius: 5px;
+  
 }
+
+.nav-turno:hover{
+  
+  background-color: #ffd763;
+  border-radius: 5px;
+ color: #066b72;
+  border-color: #066b72;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
 
 .hamburger {
   background: none;
@@ -136,6 +148,100 @@
 }
 
 
+/* Modal fondo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal contenido */
+.modal-content {
+  background-color: #f5db8d;
+  padding: 30px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.login-column, .register-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.modal-btn {
+  background-color: #09aeb8;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-btn:hover {
+  background-color: #067f86;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.etiquetaForm{
+   font-size: medium;
+   font-weight: bold;
+
+}
+
+label {
+  font-weight: bold;
+  color: #09aeb8;
+  margin-bottom: 5px;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  background-color: #09aeb8;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #078a91;
+}
+
+
 
 
 /* Estilos responsivos */
@@ -162,7 +268,7 @@
   }
 
   .right-section {
-    display: none; /* Puedes ocultarlo también o adaptarlo */
+    display: none; 
   }
   .logo {
     width: 7em;
@@ -252,5 +358,11 @@
   .logo-circle-container .logo {
     width: 5em;
     height: 5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-columns {
+    flex-direction: column;
   }
 }

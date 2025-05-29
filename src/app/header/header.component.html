@@ -21,7 +21,9 @@
         <button class="nav-button" routerLink="/nosotros">Nosotros</button>
       </div>
       
-      <button class="nav-button">Sacar Turno</button>
+      <button class="nav-button nav-turno">Sacar Turno</button>
+
+      
 
       <!-- Menú hamburguesa -->
       <button class="hamburger" (click)="toggleMenu()">
@@ -30,11 +32,59 @@
     </div>
 
     <div class="right-section login">
-    <!--  <button>Login</button>
-      <button>Registro</button>  -->
-      <button class="btn">Iniciar Sesión</button>
-      <button class="btn">Registrarse</button>
+   
+      <!-- <button class="btn"> <i class="fas fa-user"></i> Mi Cuenta</button>
+      <button class="btn">Iniciar Sesión</button> -->
+   <!--    <button class="btn">Registrarse</button> -->
+
+
+   <!-- Botón en el header -->
+<button class="btn" (click)="abrirModal()">
+  <i class="fas fa-user"></i> Mi Cuenta
+</button>
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="modalAbierto">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarModal()">&times;</span>
+    
+    <div class="modal-columns">
+      <!-- Iniciar sesión -->
+      <div class="login-column">
+        <h3>Iniciar Sesión</h3>
+         <label for="name" class="etiquetaForm">Email:</label>
+        <input type="email" placeholder="Email">
+         <label for="name" class="etiquetaForm">Contraseña:</label>
+        <input type="password" placeholder="Contraseña">
+        <button class="modal-btn">Ingresar</button>
+      </div>
+
+      <!-- Registrarse -->
+      <div class="register-column">
+        <h3>Registrarse</h3>
+          <label for="name" class="etiquetaForm">Nombre:</label>
+        <input type="text" placeholder="Nombre">
+          <label for="lastName" class="etiquetaForm">Apellido:</label>
+        <input type="text" placeholder="Apellido">
+        <label for="dni" class="etiquetaForm">DNI:</label>
+        <input type="text" placeholder="DNI">
+        <label for="email" class="etiquetaForm">Email:</label>
+        <input type="email" placeholder="Email">
+        <label for="password" class="etiquetaForm">Contraseña:</label>
+        <input type="password" placeholder="Contraseña">
+        <label for="password" class="etiquetaForm">Repetir Contraseña:</label>
+        <input type="password" placeholder="Repetir Contraseña">
+        <button class="modal-btn">Crear cuenta</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
+    </div>
+
+    
   </nav>
 
   <!-- Menú desplegable para móviles -->
