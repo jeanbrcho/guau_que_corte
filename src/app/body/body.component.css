@@ -98,7 +98,7 @@
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s ease; /* Animación suave */
-
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .servicios_tarjetas img {

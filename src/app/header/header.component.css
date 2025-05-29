@@ -21,23 +21,6 @@
   background-color: #09aeb8;
 }
 
-/* estilo previo 
-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-*/ 
-
-
 .logo {
   width: 5.5em;
   height: 5em;
@@ -104,24 +87,6 @@ button:hover {
   color: #fff;
   border-radius: 5px;
 }
-
-/* Botones de Login/Registro 
-.login button {
-  /*background-color: #007bff;  
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.login button:hover {
-  background-color: #0056b3;
-} */
-
-/* ...estilos previos... */
 
 .hamburger {
   background: none;
@@ -249,5 +214,43 @@ button:hover {
   .mobile-auth button:hover,
   .mobile-auth button:active {
     background-color: #ddd;
+  }
+}
+
+/*circulo del logo*/
+.logo-circle-container {
+  position: relative;
+  width: 6em;
+  height: 6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 4px solid #ffd763;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.logo-circle-container .logo {
+  position: relative;
+  width: 5.5em;
+  height: 5em;
+  z-index: 2;
+}
+@media (max-width: 768px) {
+  .logo-circle-container {
+    width: 4.5em;
+    height: 4.5em;
+  }
+
+  .logo-circle-container .logo {
+    width: 5em;
+    height: 5em;
   }
 }
