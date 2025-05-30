@@ -1,11 +1,11 @@
 <header class="header-container">
 
-  <div class="top-bar">
+  <!--<div class="top-bar">
     <div class="mobile-auth">
     <button>Login</button>
     <button>Registro</button>
     </div>
-  </div>
+  </div> -->
 
   <nav class="navbar">
     <div class="left-section">
@@ -19,6 +19,8 @@
         <button class="nav-button" routerLink="/">Inicio</button>
         <button class="nav-button" routerLink="/contacto">Contacto</button>
         <button class="nav-button" routerLink="/nosotros">Nosotros</button>
+       
+
       </div>
       
       <button class="nav-button nav-turno">Sacar Turno</button>
@@ -43,42 +45,6 @@
   <i class="fas fa-user"></i> Mi Cuenta
 </button>
 
-<!-- Modal -->
-<div class="modal-overlay" *ngIf="modalAbierto">
-  <div class="modal-content">
-    <span class="close" (click)="cerrarModal()">&times;</span>
-    
-    <div class="modal-columns">
-      <!-- Iniciar sesión -->
-      <div class="login-column">
-        <h3>Iniciar Sesión</h3>
-         <label for="name" class="etiquetaForm">Email:</label>
-        <input type="email" placeholder="Email">
-         <label for="name" class="etiquetaForm">Contraseña:</label>
-        <input type="password" placeholder="Contraseña">
-        <button class="modal-btn">Ingresar</button>
-      </div>
-
-      <!-- Registrarse -->
-      <div class="register-column">
-        <h3>Registrarse</h3>
-          <label for="name" class="etiquetaForm">Nombre:</label>
-        <input type="text" placeholder="Nombre">
-          <label for="lastName" class="etiquetaForm">Apellido:</label>
-        <input type="text" placeholder="Apellido">
-        <label for="dni" class="etiquetaForm">DNI:</label>
-        <input type="text" placeholder="DNI">
-        <label for="email" class="etiquetaForm">Email:</label>
-        <input type="email" placeholder="Email">
-        <label for="password" class="etiquetaForm">Contraseña:</label>
-        <input type="password" placeholder="Contraseña">
-        <label for="password" class="etiquetaForm">Repetir Contraseña:</label>
-        <input type="password" placeholder="Repetir Contraseña">
-        <button class="modal-btn">Crear cuenta</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -86,11 +52,57 @@
 
     
   </nav>
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="modalAbierto">
+  <div class="modal-content">
+  <span class="close" (click)="cerrarModal()">&times;</span>
+
+  <!-- Selector de formulario -->
+  <div class="selector-formulario">
+    <button (click)="mostrarFormulario('login')" [class.activo]="formularioActual === 'login'">Iniciar Sesión</button>
+    <button (click)="mostrarFormulario('registro')" [class.activo]="formularioActual === 'registro'">Registrarse</button>
+  </div>
+
+  <!-- Contenedor de formularios -->
+  <div class="formularios">
+    <!-- Login -->
+    <div class="login-column" *ngIf="formularioActual === 'login'">
+      <h3>Iniciar Sesión</h3>
+      <label class="etiquetaForm">Email:</label>
+      <input type="email" placeholder="Email">
+      <label class="etiquetaForm">Contraseña:</label>
+      <input type="password" placeholder="Contraseña">
+      <button class="modal-btn">Ingresar</button>
+    </div>
+
+    <!-- Registro -->
+    <div class="register-column" *ngIf="formularioActual === 'registro'">
+      <h3>Registrarse</h3>
+      <label class="etiquetaForm">Nombre:</label>
+      <input type="text" placeholder="Nombre">
+      <label class="etiquetaForm">Apellido:</label>
+      <input type="text" placeholder="Apellido">
+      <label class="etiquetaForm">DNI:</label>
+      <input type="text" placeholder="DNI">
+      <label class="etiquetaForm">Email:</label>
+      <input type="email" placeholder="Email">
+      <label class="etiquetaForm">Contraseña:</label>
+      <input type="password" placeholder="Contraseña">
+      <label class="etiquetaForm">Repetir Contraseña:</label>
+      <input type="password" placeholder="Repetir Contraseña">
+      <button class="modal-btn">Crear cuenta</button>
+    </div>
+  </div>
+</div>
+
+</div>
 
   <!-- Menú desplegable para móviles -->
   <div class="mobile-menu" [class.open]="menuOpen">
     <button class="nav-button" routerLink="/" (click)="toggleMenu()">Inicio</button>
     <button class="nav-button" routerLink="/contacto" (click)="toggleMenu()">Contacto</button>
     <button class="nav-button" routerLink="/nosotros" (click)="toggleMenu()">Nosotros</button>
+    <button class="btn" (click)="abrirModalDesdeMenu()"><i class="fas fa-user"></i>  Mi Cuenta</button>
+
   </div>
 </header>

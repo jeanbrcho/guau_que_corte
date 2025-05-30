@@ -115,15 +115,13 @@
   flex-direction: column;
   padding: 10px 20px;
   background-color: #09aeb8;
+    z-index: 1000;
 }
 
 .mobile-menu.open {
   display: flex;
 }
-.mobile-auth {
-  display: none;
-  gap: 10px;
-}
+
 
 
 /* estilo nuevo botones*/ 
@@ -159,7 +157,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+   z-index: 9999;
 }
 
 /* Modal contenido */
@@ -241,6 +239,28 @@ button[type="submit"]:hover {
   background-color: #078a91;
 }
 
+/* para el modal version movil*/ 
+.selector-formulario {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.selector-formulario button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0f7fa;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #0097a7;
+}
+
+.selector-formulario button.activo {
+  background-color: #0097a7;
+  color: white;
+}
+
 
 
 
@@ -299,28 +319,7 @@ button[type="submit"]:hover {
     padding: 10px 0;
   }
 
-  .mobile-auth {
-    display: flex;
-  }
-
-  /* Oculta los botones de login de la navbar */
-  .right-section {
-    display: none;
-  }
-  .mobile-auth button {
-    background: none;
-    border: none;
-    color: black;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-  }
-
-  .mobile-auth button:hover,
-  .mobile-auth button:active {
-    background-color: #ddd;
-  }
+  
 }
 
 /*circulo del logo*/
@@ -366,3 +365,35 @@ button[type="submit"]:hover {
     flex-direction: column;
   }
 }
+
+
+@media (max-width: 400px) {
+  .modal-content {
+    width: 90%;
+    padding: 1rem;
+    z-index: 9999;
+  }
+
+  .modal-columns {
+    flex-direction: column;
+  }
+
+  .login-column, .register-column {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .selector-formulario {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .selector-formulario button {
+    flex: 1 1 auto;
+    min-width: 45%;
+  }
+}
+
+
