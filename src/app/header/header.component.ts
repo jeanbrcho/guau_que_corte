@@ -12,6 +12,12 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   menuOpen = false;
   modalAbierto: boolean = false;
+  formularioActual: 'login' | 'registro' = 'login';
+
+mostrarFormulario(tipo: 'login' | 'registro') {
+  this.formularioActual = tipo;
+}
+
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
@@ -20,11 +26,20 @@ export class HeaderComponent {
 
    abrirModal() {
     this.modalAbierto = true;
+    
   }
 
   cerrarModal() {
     this.modalAbierto = false;
   }
+
+  abrirModalDesdeMenu() {
+  this.menuOpen = false;      
+  this.modalAbierto = true;   
+  console.log("se hizo click en el modal tamaño celular")
+}
+
+
 }
 
 
