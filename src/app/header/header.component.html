@@ -44,6 +44,16 @@
 
     
   </nav>
+
+   <!-- MENÚ HAMBURGUESA para móviles -->
+  <div class="mobile-menu" [class.open]="menuOpen">
+    <button class="nav-button" routerLink="/" (click)="toggleMenu()">Inicio</button>
+    <button class="nav-button" routerLink="/contacto" (click)="toggleMenu()">Contacto</button>
+    <button class="nav-button" routerLink="/nosotros" (click)="toggleMenu()">Nosotros</button>
+    <button class="btn" (click)="abrirModalDesdeMenu()">Mi Cuenta</button>
+  </div>
+
+  
 <!-- Modal -->
 
 <div class="modal-overlay" *ngIf="modalAbierto">

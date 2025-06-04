@@ -20,7 +20,9 @@ mostrarFormulario(tipo: 'login' | 'registro') {
 
 
   toggleMenu() {
+    this.modalAbierto = false; 
     this.menuOpen = !this.menuOpen;
+     console.log('Menu hamburguesa:', this.menuOpen);
   }
 
 
