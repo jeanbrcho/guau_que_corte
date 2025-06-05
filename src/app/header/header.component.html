@@ -35,74 +35,105 @@
 
     <div class="right-section login">
    
-      <!-- <button class="btn"> <i class="fas fa-user"></i> Mi Cuenta</button>
-      <button class="btn">Iniciar Sesión</button> -->
-   <!--    <button class="btn">Registrarse</button> -->
-
-
    <!-- Botón en el header -->
 <button class="btn" (click)="abrirModal()">
   <i class="fas fa-user"></i> Mi Cuenta
 </button>
 
-
-
-
     </div>
 
     
   </nav>
-<!-- Modal -->
-<div class="modal-overlay" *ngIf="modalAbierto">
-  <div class="modal-content">
-  <span class="close" (click)="cerrarModal()">&times;</span>
 
-  <!-- Selector de formulario -->
-  <div class="selector-formulario">
-    <button (click)="mostrarFormulario('login')" [class.activo]="formularioActual === 'login'">Iniciar Sesión</button>
-    <button (click)="mostrarFormulario('registro')" [class.activo]="formularioActual === 'registro'">Registrarse</button>
-  </div>
-
-  <!-- Contenedor de formularios -->
-  <div class="formularios">
-    <!-- Login -->
-    <div class="login-column" *ngIf="formularioActual === 'login'">
-      <h3>Iniciar Sesión</h3>
-      <label class="etiquetaForm">Email:</label>
-      <input type="email" placeholder="Email">
-      <label class="etiquetaForm">Contraseña:</label>
-      <input type="password" placeholder="Contraseña">
-      <button class="modal-btn">Ingresar</button>
-    </div>
-
-    <!-- Registro -->
-    <div class="register-column" *ngIf="formularioActual === 'registro'">
-      <h3>Registrarse</h3>
-      <label class="etiquetaForm">Nombre:</label>
-      <input type="text" placeholder="Nombre">
-      <label class="etiquetaForm">Apellido:</label>
-      <input type="text" placeholder="Apellido">
-      <label class="etiquetaForm">DNI:</label>
-      <input type="text" placeholder="DNI">
-      <label class="etiquetaForm">Email:</label>
-      <input type="email" placeholder="Email">
-      <label class="etiquetaForm">Contraseña:</label>
-      <input type="password" placeholder="Contraseña">
-      <label class="etiquetaForm">Repetir Contraseña:</label>
-      <input type="password" placeholder="Repetir Contraseña">
-      <button class="modal-btn">Crear cuenta</button>
-    </div>
-  </div>
-</div>
-
-</div>
-
-  <!-- Menú desplegable para móviles -->
+   <!-- MENÚ HAMBURGUESA para móviles -->
   <div class="mobile-menu" [class.open]="menuOpen">
     <button class="nav-button" routerLink="/" (click)="toggleMenu()">Inicio</button>
     <button class="nav-button" routerLink="/contacto" (click)="toggleMenu()">Contacto</button>
     <button class="nav-button" routerLink="/nosotros" (click)="toggleMenu()">Nosotros</button>
-    <button class="btn" (click)="abrirModalDesdeMenu()"><i class="fas fa-user"></i>  Mi Cuenta</button>
-
+    <button class="btn" (click)="abrirModalDesdeMenu()">Mi Cuenta</button>
   </div>
+
+  
+<!-- Modal -->
+
+<div class="modal-overlay" *ngIf="modalAbierto">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarModal()">&times;</span>
+
+    <!-- Selector de formulario -->
+    <div class="selector-formulario">
+      <button (click)="mostrarFormulario('login')" [class.activo]="formularioActual === 'login'">Iniciar Sesión</button>
+      <button (click)="mostrarFormulario('registro')" [class.activo]="formularioActual === 'registro'">Registrarse</button>
+    </div>
+
+    <!-- Contenedor de formularios -->
+    <div class="formularios">
+      <div class="login-column" *ngIf="formularioActual === 'login'">
+        <h3>Iniciar Sesión</h3>
+<div class="form-row">
+  <div class="form-group">
+        <label class="etiquetaForm">Email:</label>
+        <input type="email" placeholder="Email">
+  </div>
+  <div class="form-group">      
+        <label class="etiquetaForm">Contraseña:</label>
+        <input type="password" placeholder="Contraseña">
+</div>
+</div>
+        <div class="modal-bton1"><button class="modal-btn ">Ingresar</button> </div>
+      </div>
+
+      <div class="register-column" *ngIf="formularioActual === 'registro'">
+<h3>Registrarse</h3>
+
+<!-- Fila 1: Nombre / Apellido -->
+<div class="form-row">
+  <div class="form-group">
+    <label class="etiquetaForm">Nombre:</label>
+    <input type="text" placeholder="Nombre">
+  </div>
+  <div class="form-group">
+    <label class="etiquetaForm">Apellido:</label>
+    <input type="text" placeholder="Apellido">
+  </div>
+</div>
+
+<!-- Fila 2: DNI / Email -->
+<div class="form-row">
+  <div class="form-group">
+    <label class="etiquetaForm">DNI:</label>
+    <input type="text" placeholder="DNI">
+  </div>
+  <div class="form-group">
+    <label class="etiquetaForm">Email:</label>
+    <input type="email" placeholder="Email">
+  </div>
+</div>
+
+<!-- Fila 3: Contraseña / Repetir Contraseña -->
+<div class="form-row">
+  <div class="form-group">
+    <label class="etiquetaForm">Contraseña:</label>
+    <input type="password" placeholder="Contraseña">
+  </div>
+  <div class="form-group">
+    <label class="etiquetaForm">Repetir Contraseña:</label>
+    <input type="password" placeholder="Repetir Contraseña">
+  </div>
+</div>
+
+<!-- Botón -->
+
+ <div class="modal-bton1"> <button class="modal-btn">Crear cuenta</button> </div>
+</div>
+
+
+
+    
+
+
+    </div>
+  </div>
+</div>
+
 </header>
