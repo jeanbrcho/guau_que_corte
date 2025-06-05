@@ -23,7 +23,8 @@
 
       </div>
       
-      <button class="nav-button nav-turno">Sacar Turno</button>
+      <button class="nav-button nav-turno" (click)="abrirModalTurno()">Sacar Turno</button>
+
 
       
 
@@ -78,7 +79,7 @@
   <div class="form-group">      
         <label class="etiquetaForm">Contraseña:</label>
         <input type="password" placeholder="Contraseña">
-</div>
+  </div>
 </div>
         <div class="modal-bton1"><button class="modal-btn ">Ingresar</button> </div>
       </div>
@@ -127,13 +128,19 @@
  <div class="modal-bton1"> <button class="modal-btn">Crear cuenta</button> </div>
 </div>
 
-
-
-    
-
-
     </div>
   </div>
 </div>
+
+  <!-- Modal de Sacar Turno -->
+  <div class="modal-overlay" *ngIf="modalTurnoAbierto">
+    <div class="modal-turno">
+      <span class="close" (click)="cerrarModalTurno()">&times;</span>
+      <div class="contenido-turno">
+        Próximamente
+      </div>
+    </div>
+  </div>
+
 
 </header>
