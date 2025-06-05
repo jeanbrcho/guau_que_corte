@@ -39,8 +39,18 @@ mostrarFormulario(tipo: 'login' | 'registro') {
   this.menuOpen = false;      
   this.modalAbierto = true;   
   console.log("se hizo click en el modal tamaño celular")
-}
+  }
 
+  // Modal para Sacar Turno
+  modalTurnoAbierto = false;
+
+  abrirModalTurno() {
+    this.modalTurnoAbierto = true;
+  }
+
+  cerrarModalTurno() {
+    this.modalTurnoAbierto = false;
+  }
 
 }
 

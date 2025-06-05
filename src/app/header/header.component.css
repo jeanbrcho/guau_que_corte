@@ -93,7 +93,6 @@
 
 }
 
-
 .hamburger {
   background: none;
   border: none;
@@ -428,4 +427,82 @@ button[type="submit"]:hover {
   }
 }
 
+/*Para modal Sacar Turno*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
+.modal-turno {
+  width: 50%;
+  max-width: 500px;
+  height: 50%;
+  max-height: 300px;
+  background-color: #ffd763;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: zoomIn 0.3s ease;
+  text-align: center;
+}
+
+.contenido-turno {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0097a7;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.modal-turno .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Responsive: adaptar en pantallas pequeñas */
+@media (max-width: 768px) {
+  .modal-turno {
+    width: 80%;
+    height: auto;
+    max-height: 70%;
+    padding: 30px 15px;
+  }
+
+  .contenido-turno {
+    font-size: 1.8rem;
+  }
+
+  .modal-turno .close {
+    top: 5px;
+    right: 10px;
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
