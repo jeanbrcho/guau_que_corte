@@ -46,4 +46,8 @@ export class TokenUserService {
     return localStorage.getItem(this.USER_LASTNAME)
   }
 
+  clearLocalStorage(){
+    localStorage.clear()
+  }
+
 }
