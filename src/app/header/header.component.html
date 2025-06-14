@@ -19,14 +19,14 @@
         <button class="nav-button" routerLink="/">Inicio</button>
         <button class="nav-button" routerLink="/contacto">Contacto</button>
         <button class="nav-button" routerLink="/nosotros">Nosotros</button>
-       
+
 
       </div>
-      
+
       <button class="nav-button nav-turno" (click)="abrirModalTurno()">Sacar Turno</button>
 
 
-      
+
 
       <!-- Menú hamburguesa -->
       <button class="hamburger" (click)="toggleMenu()">
@@ -35,18 +35,18 @@
     </div>
 
     <div class="right-section login">
-   
-   <!-- Botón en el header -->
-<button class="btn" (click)="abrirModal()">
-  <i class="fas fa-user"></i> Mi Cuenta
-</button>
+
+      <!-- Botón en el header -->
+      <button class="btn" (click)="abrirModal()">
+        Mi Cuenta
+      </button>
 
     </div>
 
-    
+
   </nav>
 
-   <!-- MENÚ HAMBURGUESA para móviles -->
+  <!-- MENÚ HAMBURGUESA para móviles -->
   <div class="mobile-menu" [class.open]="menuOpen">
     <button class="nav-button" routerLink="/" (click)="toggleMenu()">Inicio</button>
     <button class="nav-button" routerLink="/contacto" (click)="toggleMenu()">Contacto</button>
@@ -54,83 +54,76 @@
     <button class="btn" (click)="abrirModalDesdeMenu()">Mi Cuenta</button>
   </div>
 
-  
-<!-- Modal -->
 
-<div class="modal-overlay" *ngIf="modalAbierto">
-  <div class="modal-content">
-    <span class="close" (click)="cerrarModal()">&times;</span>
+  <!-- Modal -->
 
-    <!-- Selector de formulario -->
-    <div class="selector-formulario">
-      <button (click)="mostrarFormulario('login')" [class.activo]="formularioActual === 'login'">Iniciar Sesión</button>
-      <button (click)="mostrarFormulario('registro')" [class.activo]="formularioActual === 'registro'">Registrarse</button>
-    </div>
+  <div class="modal-overlay" *ngIf="modalAbierto">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModal()">&times;</span>
 
-    <!-- Contenedor de formularios -->
-    <div class="formularios">
-      <div class="login-column" *ngIf="formularioActual === 'login'">
-        <h3>Iniciar Sesión</h3>
-<div class="form-row">
-  <div class="form-group">
-        <label class="etiquetaForm">Email:</label>
-        <input type="email" placeholder="Email">
-  </div>
-  <div class="form-group">      
-        <label class="etiquetaForm">Contraseña:</label>
-        <input type="password" placeholder="Contraseña">
-  </div>
-</div>
-        <div class="modal-bton1"><button class="modal-btn ">Ingresar</button> </div>
+      <!-- Selector de formulario -->
+      <div class="selector-formulario">
+        <button (click)="mostrarFormulario('login')" [class.activo]="formularioActual === 'login'">
+          Iniciar Sesión
+        </button>
+        <button (click)="mostrarFormulario('registro')"
+          [class.activo]="formularioActual === 'registro'">Registrarse</button>
       </div>
 
-      <div class="register-column" *ngIf="formularioActual === 'registro'">
-<h3>Registrarse</h3>
+      <!-- Contenedor de formularios -->
+      <div class="formularios">
+        <div class="login-column" *ngIf="formularioActual === 'login'">
+          <!--utilizo el componente "login.component" que va tener el formulario , se importa el componente en header.component para que funcione   -->
+          <app-login [closeModal]="cerrarModal"></app-login>
+        </div>
 
-<!-- Fila 1: Nombre / Apellido -->
-<div class="form-row">
-  <div class="form-group">
-    <label class="etiquetaForm">Nombre:</label>
-    <input type="text" placeholder="Nombre">
-  </div>
-  <div class="form-group">
-    <label class="etiquetaForm">Apellido:</label>
-    <input type="text" placeholder="Apellido">
-  </div>
-</div>
+        <div class="register-column" *ngIf="formularioActual === 'registro'">
+          <h3>Registrarse</h3>
 
-<!-- Fila 2: DNI / Email -->
-<div class="form-row">
-  <div class="form-group">
-    <label class="etiquetaForm">DNI:</label>
-    <input type="text" placeholder="DNI">
-  </div>
-  <div class="form-group">
-    <label class="etiquetaForm">Email:</label>
-    <input type="email" placeholder="Email">
-  </div>
-</div>
+          <!-- Fila 1: Nombre / Apellido -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="etiquetaForm">Nombre:</label>
+              <input type="text" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <label class="etiquetaForm">Apellido:</label>
+              <input type="text" placeholder="Apellido">
+            </div>
+          </div>
 
-<!-- Fila 3: Contraseña / Repetir Contraseña -->
-<div class="form-row">
-  <div class="form-group">
-    <label class="etiquetaForm">Contraseña:</label>
-    <input type="password" placeholder="Contraseña">
-  </div>
-  <div class="form-group">
-    <label class="etiquetaForm">Repetir Contraseña:</label>
-    <input type="password" placeholder="Repetir Contraseña">
-  </div>
-</div>
+          <!-- Fila 2: DNI / Email -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="etiquetaForm">DNI:</label>
+              <input type="text" placeholder="DNI">
+            </div>
+            <div class="form-group">
+              <label class="etiquetaForm">Email:</label>
+              <input type="email" placeholder="Email">
+            </div>
+          </div>
 
-<!-- Botón -->
+          <!-- Fila 3: Contraseña / Repetir Contraseña -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="etiquetaForm">Contraseña:</label>
+              <input type="password" placeholder="Contraseña">
+            </div>
+            <div class="form-group">
+              <label class="etiquetaForm">Repetir Contraseña:</label>
+              <input type="password" placeholder="Repetir Contraseña">
+            </div>
+          </div>
 
- <div class="modal-bton1"> <button class="modal-btn">Crear cuenta</button> </div>
-</div>
+          <!-- Botón -->
 
+          <div class="modal-bton1"> <button class="modal-btn">Crear cuenta</button> </div>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Modal de Sacar Turno -->
   <div class="modal-overlay" *ngIf="modalTurnoAbierto">
@@ -139,6 +132,10 @@
       <div class="contenido-turno">
         Próximamente
       </div>
+      <!--Este button esta de ejemplo para que vean si trae todos los usuarios si estan longueado correctamente por consola -->
+      <button type="button" style="position: absolute; margin-top: 80px" (click)="handleClickAllUsers()">
+        ver usuarios por consola
+      </button>
     </div>
   </div>
 
