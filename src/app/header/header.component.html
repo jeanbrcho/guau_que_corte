@@ -23,10 +23,8 @@
 
       </div>
 
-      <!-- <button class="nav-button nav-turno" (click)="abrirModalTurno()">Sacar Turno</button> -->
+        <!-- <button class="nav-button nav-turno" (click)="abrirModalTurno()">Sacar Turno</button> -->
       <button class="nav-button nav-turno" routerLink="/turnos">Sacar Turno</button>
-
-
 
 
 
@@ -39,10 +37,21 @@
 
     <div class="right-section login">
 
-      <!-- Botón en el header -->
+      <!-- Botón en el header 
       <button class="btn" (click)="abrirModal()">
         Mi Cuenta
-      </button>
+      </button> -->
+
+
+<!-- ESTE ES PARA LA OPCION ENTRE INICIAR O ENTRAR AL PERFIL -->
+      <ng-container *ngIf="!logueado">
+  <button class="btn" (click)="abrirModal()"> <i class="fa fa-user"></i> Iniciar Sesión</button>
+</ng-container>
+
+<ng-container *ngIf="logueado">
+  <button class="btn" (click)="abrirPanel()"> <i class="fa fa-user"></i> Mi Perfil</button>
+</ng-container>
+
 
     </div>
 
@@ -141,6 +150,16 @@
       </button>
     </div>
   </div>
+
+
+ <app-panel-perfil
+  *ngIf="logueado && perfilAbierto"
+    (cerrar)="cerrarPanel()"
+    (logout)="cerrarSesion()"
+></app-panel-perfil>
+
+
+  
 
 
 </header>

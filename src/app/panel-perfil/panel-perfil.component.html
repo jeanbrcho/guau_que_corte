@@ -1,0 +1,15 @@
+
+  <div class="perfil-panel">
+    <button class="close" (click)="cerrarPanel()">×</button>
+    <div class="titulo">Hola {{ email }}!</div>
+    <div class="boton-container">
+      <button class="boton-cerrar" (click)="cerrarSesion()">
+        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+      </button>
+    </div>
+  </div>
+
+<ng-template #noLogueado>
+  <p>No estás logueado.</p>
+</ng-template>
+

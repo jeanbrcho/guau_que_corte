@@ -1,23 +1,54 @@
-import { Component } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../user/login/login.component'
 import { UserService } from '../services/user.service'
+import { PanelPerfilComponent } from '../panel-perfil/panel-perfil.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [RouterLink, CommonModule, LoginComponent]
+  imports: [RouterLink, CommonModule, LoginComponent, PanelPerfilComponent]
 })
-export class HeaderComponent {
-  menuOpen = false;
+export class HeaderComponent implements OnInit {
+
+  logueado: boolean = false;
+  usuarioEmail: string = '';
+  perfilAbierto: boolean = false;
+
+
+ menuOpen = false;
   modalAbierto: boolean = false;
   formularioActual: 'login' | 'registro' = 'login';
 
 
   constructor(private userService: UserService) { }
+
+
+  ngOnInit() {
+    this.userService.logueado$.subscribe(valor => {
+      this.logueado = valor;
+    });
+       this.userService.email$.subscribe(email => {
+      this.usuarioEmail = email;
+    });
+  }
+
+  abrirPanel() {
+    this.perfilAbierto = true;
+  }
+
+  cerrarPanel() {
+    this.perfilAbierto = false;
+  }
+
+  cerrarSesion() {
+    this.userService.logout();
+    this.perfilAbierto = false;
+  }
+
 
   mostrarFormulario(tipo: 'login' | 'registro') {
     this.formularioActual = tipo;
