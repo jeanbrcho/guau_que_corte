@@ -1,0 +1,40 @@
+<div class="turnos-container">
+  <h1 class="titulo">Hola Pepito Pepin!</h1>
+  <p class="subtitulo">Para reservar un turno, completar los siguientes campos:</p>
+
+  <form class="form-turno">
+    <div class="form-group">
+      <label>Fecha:</label>
+      <input type="date" />
+    </div>
+
+    <div class="form-group">
+      <label>Hora:</label>
+      <input type="time" />
+    </div>
+
+    <div class="form-group">
+      <label>Nombre de la Mascota:</label>
+      <input type="text" placeholder="Firulais" />
+    </div>
+
+    <div class="form-group">
+      <label>Número de Teléfono:</label>
+      <input type="tel" placeholder="Ej: 1123456789" />
+    </div>
+
+    <div class="form-group">
+      <label>Seleccione Servicio:</label>
+      <select>
+        <option value="corte">Corte</option>
+        <option value="baño">Baño</option>
+        <option value="completo">Servicio Completo</option>
+      </select>
+    </div>
+
+    <div class="botones">
+      <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="btn-confirmar">Confirmar</button>
+    </div>
+  </form>
+</div>
