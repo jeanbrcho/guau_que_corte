@@ -81,49 +81,8 @@
         </div>
 
         <div class="register-column" *ngIf="formularioActual === 'registro'">
-          <h3>Registrarse</h3>
-
-          <!-- Fila 1: Nombre / Apellido -->
-          <div class="form-row">
-            <div class="form-group">
-              <label class="etiquetaForm">Nombre:</label>
-              <input type="text" placeholder="Nombre">
-            </div>
-            <div class="form-group">
-              <label class="etiquetaForm">Apellido:</label>
-              <input type="text" placeholder="Apellido">
-            </div>
-          </div>
-
-          <!-- Fila 2: DNI / Email -->
-          <div class="form-row">
-            <div class="form-group">
-              <label class="etiquetaForm">DNI:</label>
-              <input type="text" placeholder="DNI">
-            </div>
-            <div class="form-group">
-              <label class="etiquetaForm">Email:</label>
-              <input type="email" placeholder="Email">
-            </div>
-          </div>
-
-          <!-- Fila 3: Contraseña / Repetir Contraseña -->
-          <div class="form-row">
-            <div class="form-group">
-              <label class="etiquetaForm">Contraseña:</label>
-              <input type="password" placeholder="Contraseña">
-            </div>
-            <div class="form-group">
-              <label class="etiquetaForm">Repetir Contraseña:</label>
-              <input type="password" placeholder="Repetir Contraseña">
-            </div>
-          </div>
-
-          <!-- Botón -->
-
-          <div class="modal-bton1"> <button class="modal-btn">Crear cuenta</button> </div>
+          <app-register [closeModal]="cerrarModal"></app-register>
         </div>
-
       </div>
     </div>
   </div>

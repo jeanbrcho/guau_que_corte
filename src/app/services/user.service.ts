@@ -40,5 +40,15 @@
       return this.http.post<IResponseUserLogin>(urlLogin, jsonData)
     }
 
-
+    postRegister(
+      name: string,
+      lastName: string,
+      dni: number,
+      email: string,
+      password: string
+    ): Observable<IResponseUserLogin> {
+      const urlRegister = `${environment.apiUrl}/users/create`;
+      const jsonData = { name, lastName, dni, email, password };
+      return this.http.post<IResponseUserLogin>(urlRegister, jsonData);
+    }
   }

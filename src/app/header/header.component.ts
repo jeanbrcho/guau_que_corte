@@ -3,13 +3,15 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../user/login/login.component'
 import { UserService } from '../services/user.service'
+import { RegisterComponent } from '../user/register/register.component';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [RouterLink, CommonModule, LoginComponent]
+  imports: [RouterLink, CommonModule, LoginComponent,RegisterComponent]
 })
 export class HeaderComponent {
   menuOpen = false;
