@@ -42,6 +42,7 @@ export class LoginComponent {
         if (response.data) {
           this.tokenUserService.saveToken(response.data.token)
           this.tokenUserService.saveUserEmail(response.data.user)
+          this.tokenUserService.saveUserId(response.data.user.id);  // <-- aquí
         }
       },
       error: error => {

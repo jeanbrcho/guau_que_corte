@@ -10,7 +10,7 @@ export class TokenUserService {
   private USER_EMAIL = 'userEmail'
   private USER_NAME = 'userName'
   private USER_LASTNAME = 'userLastName'
-
+  private USER_ID = 'userId';  // <-- agregá esta constante
 
   constructor() { }
 
@@ -30,6 +30,12 @@ export class TokenUserService {
     localStorage.setItem(this.USER_EMAIL, user.lastName);
   }
 
+  // Nuevo método para guardar userId
+  saveUserId(userId: string): void {
+    localStorage.setItem(this.USER_ID, userId);
+  }
+
+
   getToken() {
     return localStorage.getItem(this.TOKEN_KEY)
   }
@@ -44,6 +50,11 @@ export class TokenUserService {
 
   getUserLastName() {
     return localStorage.getItem(this.USER_LASTNAME)
+  }
+
+  // Nuevo método para obtener userId
+  getUserId(): string | null {
+    return localStorage.getItem(this.USER_ID);
   }
 
   clearLocalStorage(){
