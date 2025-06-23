@@ -1,34 +1,35 @@
 <div class="turnos-container">
   <h1 class="titulo">Hola Pepito Pepin!</h1>
-  <p class="subtitulo">Para reservar un turno, completar los siguientes campos:</p>
+  <p class="subtitulo">Para reservar un turno, completá los siguientes campos:</p>
 
-  <form class="form-turno">
+  <form class="form-turno" (ngSubmit)="confirmarTurno()" #form="ngForm">
     <div class="form-group">
       <label>Fecha:</label>
-      <input type="date" />
+      <input type="date" [(ngModel)]="nuevoTurno.date" name="fecha" required />
     </div>
 
     <div class="form-group">
       <label>Hora:</label>
-      <input type="time" />
+      <input type="time" [(ngModel)]="nuevoTurno.time" name="hora" required />
     </div>
 
     <div class="form-group">
       <label>Nombre de la Mascota:</label>
-      <input type="text" placeholder="Firulais" />
+      <input type="text" [(ngModel)]="nuevoTurno.petName" name="petName" placeholder="Firulais" required />
     </div>
 
     <div class="form-group">
       <label>Número de Teléfono:</label>
-      <input type="tel" placeholder="Ej: 1123456789" />
+      <input type="tel" [(ngModel)]="nuevoTurno.phone" name="telefono" placeholder="Ej: 1123456789" />
     </div>
 
     <div class="form-group">
       <label>Seleccione Servicio:</label>
-      <select>
-        <option value="corte">Corte</option>
-        <option value="baño">Baño</option>
-        <option value="completo">Servicio Completo</option>
+      <select [(ngModel)]="nuevoTurno.serviceId" name="servicio" required>
+        <option value="" disabled selected>Seleccioná un servicio</option>
+        <option *ngFor="let servicio of servicios" [value]="servicio.id">
+          {{ servicio.name }}
+        </option>
       </select>
     </div>
 
