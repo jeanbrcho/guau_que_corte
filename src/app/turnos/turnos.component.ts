@@ -27,6 +27,7 @@ export class TurnosComponent implements OnInit {
   horarios: any[] = [];
   servicioSeleccionado: any = null;
   noHayHorarios: boolean = false;
+  nombreUsuario: string = '';
 
   constructor(
     private router: Router,
@@ -37,6 +38,7 @@ export class TurnosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarServicios();
+    this.cargarNombreUsuario();
     // No cargar horarios hasta que se seleccione una fecha
   }
 
@@ -208,6 +210,20 @@ export class TurnosComponent implements OnInit {
     if (newWindow) {
       newWindow.document.write(htmlContent);
       newWindow.document.close();
+    }
+  }
+
+  cargarNombreUsuario(): void {
+    const userName = this.tokenUserService.getUserName();
+    const userEmail = this.tokenUserService.getUserEmail();
+    
+    if (userName) {
+      this.nombreUsuario = userName;
+    } else if (userEmail) {
+      // Si no hay nombre, usar la parte antes del @ del email
+      this.nombreUsuario = userEmail.split('@')[0];
+    } else {
+      this.nombreUsuario = 'Usuario';
     }
   }
 }
