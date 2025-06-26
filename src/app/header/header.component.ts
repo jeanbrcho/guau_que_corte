@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../user/login/login.component'
 import { UserService } from '../services/user.service'
 import { RegisterComponent } from '../user/register/register.component';
+import { TokenUserService } from '../services/token-user.service';
+import { MiPerfilComponent } from '../mi-perfil/mi-perfil.component';
 
 
 @Component({
@@ -11,15 +13,39 @@ import { RegisterComponent } from '../user/register/register.component';
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [RouterLink, CommonModule, LoginComponent,RegisterComponent]
+  imports: [RouterLink, CommonModule, LoginComponent,RegisterComponent,MiPerfilComponent]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   menuOpen = false;
   modalAbierto: boolean = false;
   formularioActual: 'login' | 'registro' = 'login';
 
+  logueado: boolean = false;
+  usuarioEmail: string = '';
+  perfilAbierto: boolean = false;
 
-  constructor(private userService: UserService) { }
+
+  constructor(private tokenUserService: TokenUserService, private userService: UserService) { }
+
+ngOnInit(): void {
+    this.tokenUserService.logueado$.subscribe(val => this.logueado = val);
+    this.tokenUserService.email$.subscribe(val => this.usuarioEmail = val);
+  }
+
+  
+  abrirPanel() {
+    this.perfilAbierto = true;
+  }
+
+  cerrarPanel() {
+    this.perfilAbierto = false;
+  }
+
+
+    cerrarSesion() {
+    this.tokenUserService.logout();
+    this.perfilAbierto = false;
+  }
 
   mostrarFormulario(tipo: 'login' | 'registro') {
     this.formularioActual = tipo;
