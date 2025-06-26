@@ -5,12 +5,17 @@
   <form class="form-turno" (ngSubmit)="confirmarTurno()" #form="ngForm">
     <div class="form-group">
       <label>Fecha:</label>
-      <input type="date" [(ngModel)]="nuevoTurno.date" name="fecha" required />
+      <input type="date" [(ngModel)]="nuevoTurno.date" name="fecha" (change)="onFechaChange()" required />
     </div>
 
     <div class="form-group">
       <label>Hora:</label>
-      <input type="time" [(ngModel)]="nuevoTurno.time" name="hora" required />
+      <select [(ngModel)]="nuevoTurno.time" name="hora" required>
+        <option value="" disabled selected>Seleccioná un horario</option>
+        <option *ngFor="let horario of horarios" [value]="horario.value || horario.time || horario">
+          {{ horario.label || horario.time || horario }}
+        </option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -38,4 +43,5 @@
       <button type="submit" class="btn-confirmar">Confirmar</button>
     </div>
   </form>
+  
 </div>

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../user/login/login.component'
 import { UserService } from '../services/user.service'
 import { RegisterComponent } from '../user/register/register.component';
+import { ModalService } from '../services/modal.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,13 +15,37 @@ import { RegisterComponent } from '../user/register/register.component';
   styleUrls: ['./header.component.css'],
   imports: [RouterLink, CommonModule, LoginComponent,RegisterComponent]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   menuOpen = false;
   modalAbierto: boolean = false;
   formularioActual: 'login' | 'registro' = 'login';
+  redirectToTurnos: boolean = false; // Nueva propiedad
+  private modalSubscription?: Subscription;
 
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private modalService: ModalService
+  ) { }
+
+  ngOnInit(): void {
+    // Escuchar cuando el guard quiera abrir el modal
+    this.modalSubscription = this.modalService.modalLogin$.subscribe(modalState => {
+      if (modalState.open) {
+        this.abrirModal();
+        this.formularioActual = 'login'; // Asegurar que se abra el login
+        this.redirectToTurnos = modalState.redirectToTurnos; // Establecer si debe redirigir
+        // Resetear el estado del servicio
+        this.modalService.cerrarModalLogin();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.modalSubscription) {
+      this.modalSubscription.unsubscribe();
+    }
+  }
 
   mostrarFormulario(tipo: 'login' | 'registro') {
     this.formularioActual = tipo;
