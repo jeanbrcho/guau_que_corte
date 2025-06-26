@@ -65,6 +65,9 @@ export class RegisterComponent {
 
           if (user) {
             this.tokenUserService.saveUserEmail(user);
+            this.tokenUserService.saveUserName(user);
+            this.tokenUserService.saveUserLastName(user);
+            this.tokenUserService.saveUserId(user.id);
           } else {
             console.warn("No se recibió usuario");
           }

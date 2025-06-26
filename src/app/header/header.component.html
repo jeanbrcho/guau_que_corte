@@ -85,7 +85,7 @@
       <div class="formularios">
         <div class="login-column" *ngIf="formularioActual === 'login'">
           <!--utilizo el componente "login.component" que va tener el formulario , se importa el componente en header.component para que funcione   -->
-          <app-login [closeModal]="cerrarModal"></app-login>
+          <app-login [closeModal]="cerrarModal" [redirectToTurnos]="redirectToTurnos"></app-login>
         </div>
 
         <div class="register-column" *ngIf="formularioActual === 'registro'">

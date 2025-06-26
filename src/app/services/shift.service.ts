@@ -12,6 +12,8 @@ interface IResponseAllShifts extends IResponseApi {
 
 interface IResponseShift extends IResponseApi {
   data?: IShift;
+  dataShift?: any;
+  qrCode?: string;
 }
 
 @Injectable({

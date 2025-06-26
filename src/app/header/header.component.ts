@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../user/login/login.component'
 import { UserService } from '../services/user.service'
 import { RegisterComponent } from '../user/register/register.component';
+import { ModalService } from '../services/modal.service';
+import { Subscription } from 'rxjs';
 import { TokenUserService } from '../services/token-user.service';
 import { MiPerfilComponent } from '../mi-perfil/mi-perfil.component';
 
@@ -15,24 +17,46 @@ import { MiPerfilComponent } from '../mi-perfil/mi-perfil.component';
   styleUrls: ['./header.component.css'],
   imports: [RouterLink, CommonModule, LoginComponent,RegisterComponent,MiPerfilComponent]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+
   menuOpen = false;
   modalAbierto: boolean = false;
   formularioActual: 'login' | 'registro' = 'login';
+  redirectToTurnos: boolean = false; // Nueva propiedad
+  private modalSubscription?: Subscription;
 
   logueado: boolean = false;
   usuarioEmail: string = '';
   perfilAbierto: boolean = false;
 
 
-  constructor(private tokenUserService: TokenUserService, private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private modalService: ModalService,
+    private tokenUserService: TokenUserService, 
+  ) { }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.tokenUserService.logueado$.subscribe(val => this.logueado = val);
     this.tokenUserService.email$.subscribe(val => this.usuarioEmail = val);
+    // Escuchar cuando el guard quiera abrir el modal
+    this.modalSubscription = this.modalService.modalLogin$.subscribe(modalState => {
+      if (modalState.open) {
+        this.abrirModal();
+        this.formularioActual = 'login'; // Asegurar que se abra el login
+        this.redirectToTurnos = modalState.redirectToTurnos; // Establecer si debe redirigir
+        // Resetear el estado del servicio
+        this.modalService.cerrarModalLogin();
+      }
+    });
   }
 
-  
+  ngOnDestroy(): void {
+    if (this.modalSubscription) {
+      this.modalSubscription.unsubscribe();
+    }
+  }
+
   abrirPanel() {
     this.perfilAbierto = true;
   }
@@ -45,6 +69,7 @@ ngOnInit(): void {
     cerrarSesion() {
     this.tokenUserService.logout();
     this.perfilAbierto = false;
+
   }
 
   mostrarFormulario(tipo: 'login' | 'registro') {

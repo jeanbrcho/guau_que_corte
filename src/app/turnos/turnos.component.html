@@ -1,16 +1,36 @@
 <div class="turnos-container">
-  <h1 class="titulo">Hola Pepito Pepin!</h1>
+  <h1 class="titulo">Hola {{ nombreUsuario }}!</h1>
   <p class="subtitulo">Para reservar un turno, completá los siguientes campos:</p>
 
   <form class="form-turno" (ngSubmit)="confirmarTurno()" #form="ngForm">
     <div class="form-group">
       <label>Fecha:</label>
-      <input type="date" [(ngModel)]="nuevoTurno.date" name="fecha" required />
+      <input type="date" [(ngModel)]="nuevoTurno.date" name="fecha" (change)="onFechaChange()" required />
     </div>
 
     <div class="form-group">
       <label>Hora:</label>
-      <input type="time" [(ngModel)]="nuevoTurno.time" name="hora" required />
+      <select [(ngModel)]="nuevoTurno.time" name="hora" required [disabled]="!nuevoTurno.date || noHayHorarios">
+        <!-- Mensaje cuando no se ha seleccionado fecha -->
+        <option value="" *ngIf="!nuevoTurno.date" disabled selected>Primero seleccioná una fecha</option>
+        
+        <!-- Mensaje cuando no hay horarios disponibles -->
+        <option value="" *ngIf="nuevoTurno.date && noHayHorarios" disabled selected>Sin turnos disponibles para esta fecha</option>
+        
+        <!-- Mensaje cuando hay horarios disponibles pero no se ha seleccionado -->
+        <option value="" *ngIf="nuevoTurno.date && !noHayHorarios && horarios.length > 0" disabled selected>Seleccioná un horario</option>
+        
+        <!-- Lista de horarios disponibles -->
+        <option *ngFor="let horario of horarios" [value]="horario.value || horario.time || horario">
+          {{ horario.label || horario.time || horario }}
+        </option>
+      </select>
+      
+      <!-- Mensaje adicional cuando no hay turnos -->
+      <div *ngIf="nuevoTurno.date && noHayHorarios" class="no-turnos-mensaje">
+        <p>😔 No hay turnos disponibles para esta fecha.</p>
+        <p>Probá seleccionando otra fecha.</p>
+      </div>
     </div>
 
     <div class="form-group">
@@ -25,17 +45,26 @@
 
     <div class="form-group">
       <label>Seleccione Servicio:</label>
-      <select [(ngModel)]="nuevoTurno.serviceId" name="servicio" required>
+      <select [(ngModel)]="nuevoTurno.serviceId" name="servicio" (change)="onServicioChange()" required>
         <option value="" disabled selected>Seleccioná un servicio</option>
         <option *ngFor="let servicio of servicios" [value]="servicio.id">
           {{ servicio.name }}
         </option>
       </select>
     </div>
-
+    
+    <div class="form-group" *ngIf="servicioSeleccionado">
+      <label>Información del Servicio:</label>
+      <div class="servicio-info">
+        <p><strong>Servicio:</strong> {{ servicioSeleccionado.name }}</p>
+        <p *ngIf="servicioSeleccionado.price"><strong>Precio:</strong> ${{ servicioSeleccionado.price }}</p>
+        <p *ngIf="servicioSeleccionado.description"><strong>Descripción:</strong> {{ servicioSeleccionado.description }}</p>
+      </div>
+    </div>
     <div class="botones">
       <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
       <button type="submit" class="btn-confirmar">Confirmar</button>
     </div>
   </form>
+  
 </div>

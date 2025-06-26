@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service'
 import { TokenUserService } from '../../services/token-user.service'
 
@@ -24,8 +25,13 @@ export class LoginComponent {
   }
 
   @Input() closeModal: () => void = () => { } // The @Input() property
+  @Input() redirectToTurnos: boolean = false; // Nueva propiedad para saber si debe redirigir
 
-  constructor(private userService: UserService, private tokenUserService: TokenUserService) { }
+  constructor(
+    private userService: UserService, 
+    private tokenUserService: TokenUserService,
+    private router: Router
+  ) { }
 
   handleInputChange(event: Event) {
     const { name, value } = event.target as HTMLInputElement;
@@ -42,6 +48,8 @@ export class LoginComponent {
         if (response.data) {
           this.tokenUserService.saveToken(response.data.token)
           this.tokenUserService.saveUserEmail(response.data.user)
+          this.tokenUserService.saveUserName(response.data.user)
+          this.tokenUserService.saveUserLastName(response.data.user)
           this.tokenUserService.saveUserId(response.data.user.id);  // <-- aquí
         }
       },
@@ -55,6 +63,10 @@ export class LoginComponent {
         window.alert("Ingreso exitoso")
         setTimeout(() => {
           this.closeModal()
+          // Si viene del guard, redirigir a turnos
+          if (this.redirectToTurnos) {
+            this.router.navigate(['/turnos']);
+          }
         }, 500)
         console.log("termino con la peticion", this.loading)
       }
