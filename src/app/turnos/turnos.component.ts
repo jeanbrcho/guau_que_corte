@@ -25,6 +25,8 @@ export class TurnosComponent implements OnInit {
 
   servicios: any[] = [];
   horarios: any[] = [];
+  servicioSeleccionado: any = null;
+  noHayHorarios: boolean = false;
 
   constructor(
     private router: Router,
@@ -48,8 +50,8 @@ export class TurnosComponent implements OnInit {
         // Mantener servicios por defecto en caso de error
         this.servicios = [
           { id: '4ae56d1d-cdd0-43f4-863b-2a1cc4f970e7', name: 'corte de uñas' },
-          { id: '396fe7aa-4348-42c2-afc5-b8a7bf5f9736', name: 'baño simple' },
-          { id: 'bba9b31b-6771-43be-b019-3a4e5bc9600e', name: 'baño completo' }
+          { id: '0379cd7c-b489-4a40-a8df-4df42d8cb3a9', name: 'baño' },
+          { id: 'bba9b31b-6771-43be-b019-3a4e5bc9600e', name: 'corte de pelo' }
         ];
       }
     });
@@ -58,28 +60,45 @@ export class TurnosComponent implements OnInit {
   cargarHorarios(fecha: string): void {
     this.servicesService.getHorarios(fecha).subscribe({
       next: (response) => {
-        this.horarios = response.data || response;
+        const horariosData = response.data || response;
+        
+        if (horariosData && horariosData.length > 0) {
+          this.horarios = horariosData;
+          this.noHayHorarios = false;
+        } else {
+          this.horarios = [];
+          this.noHayHorarios = true;
+        }
       },
       error: (err) => {
         console.error('Error al cargar horarios:', err);
-        // Mantener horarios por defecto en caso de error
-        this.horarios = [
-          { value: '09:00', label: '09:00' },
-          { value: '10:00', label: '10:00' },
-          { value: '11:00', label: '11:00' },
-          { value: '14:00', label: '14:00' },
-          { value: '15:00', label: '15:00' },
-          { value: '16:00', label: '16:00' }
-        ];
+        this.horarios = [];
+        this.noHayHorarios = true;
       }
     });
   }
 
   onFechaChange(): void {
     if (this.nuevoTurno.date) {
-      this.cargarHorarios(this.nuevoTurno.date);
-      // Limpiar la hora seleccionada cuando cambie la fecha
+      // Resetear estado antes de cargar nuevos horarios
+      this.horarios = [];
+      this.noHayHorarios = false;
       this.nuevoTurno.time = '';
+      
+      this.cargarHorarios(this.nuevoTurno.date);
+    } else {
+      // Si no hay fecha, limpiar todo
+      this.horarios = [];
+      this.noHayHorarios = false;
+      this.nuevoTurno.time = '';
+    }
+  }
+
+  onServicioChange(): void {
+    if (this.nuevoTurno.serviceId) {
+      this.servicioSeleccionado = this.servicios.find(servicio => servicio.id === this.nuevoTurno.serviceId);
+    } else {
+      this.servicioSeleccionado = null;
     }
   }
 
@@ -120,55 +139,66 @@ export class TurnosComponent implements OnInit {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>QR Code - Turno Confirmado</title>
-        <style>
-          body {
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-          }
-          h1 {
-            color: #333;
-            margin-bottom: 20px;
-          }
-          img {
-            max-width: 300px;
-            max-height: 300px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            background: white;
-            padding: 10px;
-          }
-          p {
-            color: #666;
-            text-align: center;
-            margin-top: 15px;
-          }
-          button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-          }
-          button:hover {
-            background-color: #0056b3;
-          }
-        </style>
+      <title>QR Code - Turno Confirmado</title>
+      <style>
+        body {
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        }
+        h1 {
+        color: #333;
+        margin-bottom: 20px;
+        }
+        img {
+        max-width: 300px;
+        max-height: 300px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background: white;
+        padding: 10px;
+        }
+        p {
+        color: #666;
+        text-align: center;
+        margin-top: 15px;
+        }
+        button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        button:hover {
+        background-color: #0056b3;
+        }
+      </style>
       </head>
       <body>
-        <h1>¡Turno Confirmado!</h1>
-        <img src="${qrCodeBase64}" alt="QR Code del Turno" />
-        <p>Presenta este código QR en tu cita</p>
-        <button onclick="window.print()">Imprimir</button>
-        <button onclick="window.close()">Cerrar</button>
+      <h1>¡Turno Confirmado!</h1>
+      <img id="qrImg" src="${qrCodeBase64}" alt="QR Code del Turno" />
+      <p>Presenta este código QR en tu cita</p>
+      <button id="downloadBtn">Descargar</button>
+      <button onclick="window.close()">Cerrar</button>
+      <script>
+        document.getElementById('downloadBtn').onclick = function() {
+        const img = document.getElementById('qrImg');
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.download = 'turno-qr.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        };
+      </script>
       </body>
       </html>
     `;
